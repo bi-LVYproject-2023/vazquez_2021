@@ -7,6 +7,7 @@ In this repository we are reproducing an article, which can be found by this [li
 1. Igamberdiev Lev, 2nd year of Bachelor degree, [MIPT](https://mipt.ru/ "Moscow institute of physics and technologies").
 
 2. Valeria Lobanova.
+3. Anastasiia Bukreeva
 
 ## Curators
 
