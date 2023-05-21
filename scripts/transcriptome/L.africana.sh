@@ -24,9 +24,9 @@ cd pipline
 list=$(ls SRR*)
 for l in $list
 do
-hisat2 -p 12 -x /home/bukreeva/IB/L.africana/index/L_africana_index -U $l | samtools sort > $l.out.bam
+hisat2 -p 12 -x ../L_africana_index -U $l | samtools sort > $l.out.bam
 done
-samtools index -M /home/bukreeva/IB/L.africana/pipeline/*.out.bam
+samtools index -M ../L.africana/pipeline/*.out.bam
 samtools merge -X merge.out.bam *.out.bam *.out.bam.bai
 stringtie -o output_merge_gtf_L.africana.gtf merge.out.bam
 awk -F'\t' '{ if ($3 == "transcript"){split($9, gtfdata,"; "); split(gtfdata[5], tpm, " "); gsub("\"|;", "", tpm[2]); if (tpm[2]>=2){print $0} } }' output_merge_gtf_L.africana.gtf > output_merge_gtf_L.africana_filtered.gtf
