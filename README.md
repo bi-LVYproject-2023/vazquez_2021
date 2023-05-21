@@ -97,8 +97,26 @@ https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-
 
 For Mammuthus columbi genome we did Reciprocal Best Hit BLAT versus filtered human proteins from hg38 assembly version.
 ## CORRELATE THE DUPLICATION RATES WITH THE GENOME QUALITY STATISTICS
-We used the BUSCO software to calculate quality statistics. As we were lack of computational power, we decided to calculate quality metrics on functional proteins. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats.
+We used the BUSCO software to calculate quality statistics. We have calculated all available genomes. As we were lack of computational power, we decided to calculate quality metrics on functional proteins, they can be found in data folder of this repo. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats.
 ```
+busco -i protein.faa -l busco_downloads/lineages/mammalia_odb10/ -o speciesres/ -m protein --offline -c
+```
+Busco results can be found in the table below. Total number of BUSCO orthologs is 9226
+| | Name | Complete, % | S, % | D, % | F, % | M, % |
+|---|---------|------------------|---------------|------------|------------|-------------------|
+|1|_Choloepus hoffmanni_ | 78.8 |76.6|2.2|9.1|12.1|
+|2|_Chrysochloris asiatica_ |98|83.3|14.7|1.1|0.9||3
+|3|asypus_novemcinctus,91,58.7,32.3,4.5,4.5,9226
+|4|Echinops_telfairi,92.7,81.3,11.4,3.6,3.7|
+|5|Elephantulus_edwardii,96.3,82.1,14.2,1.2,2.5|
+|6|Elephas_maximus,76.3,75.8,0.5,10.7,
+|7|Loxodonta_africana,94.9,59.3,35.6,2.6,2.5|
+|8|Orycteropus_afer,74.2,73.8,0.4,10.7,15.1|
+|9|Procavia_capensis,69.4,69.0,0.4,10.2,20.4|
+|10|Trichechus_manatus_latirostris,77.2,76.8,0.4,9.8,13.0|
 
-```
+
+
+
+
 ![alt text](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/busco.jpg)
