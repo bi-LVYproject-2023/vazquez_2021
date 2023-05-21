@@ -19,9 +19,9 @@ cd pipline
 list=$(ls SRR*)
 for l in $list
 do
-hisat2 -p 12 -x /home/bukreeva/IB/T.latirostris/index/genome_index_Latirostris -U $l | samtools sort > $l.out.bam
+hisat2 -p 12 -x ../genome_index_Latirostris -U $l | samtools sort > $l.out.bam
 done
-samtools index -M /home/bukreeva/IB/T.latirostris/pipline/*.out.bam
+samtools index -M ../pipline/*.out.bam
 samtools merge -X merge.out.bam *.out.bam *.out.bam.bai
 stringtie -o output_merge_gtf_T.latirostris.gtf merge.out.bam
 awk -F'\t' '{ if ($3 == "transcript"){split($9, gtfdata,"; "); split(gtfdata[5], tpm, " "); gsub("\"|;", "", tpm[2]); if (tpm[2]>=2){print $0} } }' output_merge_gtf_T.latirostris.gtf > output_merge_gtf_T.latirostris_filtered.gtf
