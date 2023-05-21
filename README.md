@@ -104,16 +104,16 @@ busco -i protein.faa -l busco_downloads/lineages/mammalia_odb10/ -o speciesres/ 
 Busco results can be found in the table below. Total number of BUSCO orthologs is 9226
 | | Name | Complete, % | S, % | D, % | F, % | M, % |
 |---|---------|------------------|---------------|------------|------------|-------------------|
-|1|_Choloepus hoffmanni_ | 78.8 |76.6|2.2|9.1|12.1|
-|2|_Chrysochloris asiatica_ |98|83.3|14.7|1.1|0.9||3
-|3|asypus_novemcinctus,91,58.7,32.3,4.5,4.5,9226
-|4|Echinops_telfairi,92.7,81.3,11.4,3.6,3.7|
-|5|Elephantulus_edwardii,96.3,82.1,14.2,1.2,2.5|
-|6|Elephas_maximus,76.3,75.8,0.5,10.7,
-|7|Loxodonta_africana,94.9,59.3,35.6,2.6,2.5|
-|8|Orycteropus_afer,74.2,73.8,0.4,10.7,15.1|
-|9|Procavia_capensis,69.4,69.0,0.4,10.2,20.4|
-|10|Trichechus_manatus_latirostris,77.2,76.8,0.4,9.8,13.0|
+|1|_Choloepus hoffmanni_ | 78.8 | 76.6 | 2.2 | 9.1 | 12.1 |
+|2|_Chrysochloris asiatica_ | 98 | 83.3 | 14.7 | 1.1 | 0.9 |
+|3|_Dasypus novemcinctus_ | 91 | 58.7 | 32.3 | 4.5 | 4.5 |
+|4|_Echinops telfairi_ | 92.7 | 81.3 | 11.4| 3.6 | 3.7 |
+|5|_Elephantulus edwardii_ | 96.3 | 82.1 | 14.2 | 1.2 | 2.5 |
+|6|_Elephas maximus_ | 76.3 | 75.8 | 0.5 | 10.7 | 13.0 |
+|7|_Loxodonta africana_ |94.9 |59.3 | 35.6 | 2.6 | 2.5 |
+|8|_Orycteropus afer_ | 74.2 | 73.8 | 0.4 | 10.7 | 15.1 |
+|9|_Procavia capensis_ | 69.4 | 69.0 | 0.4 | 10.2 | 20.4 |
+|10|_Trichechus manatus latirostris_ | 77.2 | 76.8 | 0.4 | 9.8 | 13.0 |
 
 
 
