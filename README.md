@@ -1,6 +1,6 @@
 # Bioinformatics Institue spring project.
 
-In this repository we are reproducing an article, which can be found by this [link](https://elifesciences.org/articles/65041 "The reproduced article").
+In this repository we are reproducing an article, which can be found by this [link](https://elifesciences.org/articles/65041 "The reproduced article").      
 Vazquez, J. M., & Lynch, V. J. (2021). Pervasive duplication of tumor suppressors in Afrotherians during the evolution of large bodies and reduced cancer risk. Elife, 10, e65041.
 
 ## Students 
@@ -32,17 +32,17 @@ Asses the impact of gene duplication pattern and body size on cancer development
 
 ## DOWNLOAD GENOMES
 
-List of genomes, resources for downloading and commentaries:
+List of genomes, resources for downloading and commentaries:    
 https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-VMI/edit#gid=0  
 
-**15** full genomes of Afrotheria were needed.
-**10** genomes were allowed for downloading.
-**5** genomes were introduced only as bam files.
+**15** full genomes of Afrotheria were needed.    
+**10** genomes were allowed for downloading.    
+**5** genomes were introduced only as bam files.     
 
-This genomes should be downloaded manually (in FASTA format):
-https://www.ncbi.nlm.nih.gov/data-hub/genome/GCF_000296735.1/ 
-https://www.ncbi.nlm.nih.gov/data-hub/genome/GCF_000208655.3/ 
-https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000313985.1/ 
+This genomes should be downloaded manually (in FASTA format):    
+https://www.ncbi.nlm.nih.gov/data-hub/genome/GCF_000296735.1/     
+https://www.ncbi.nlm.nih.gov/data-hub/genome/GCF_000208655.3/     
+https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000313985.1/     
 https://www.ncbi.nlm.nih.gov/data-hub/genome/GCF_000299155.1/ 
 
 For downloading other FASTA genomes run:
@@ -84,18 +84,52 @@ CDS count: 69431
 
 ## FILTERING HUMAN PROTEINS FOR RBH BLAT
 
-We downloaded human proteins hg38 assembly version from all available components (chromosomes) except unplaced from UniProt:
+We downloaded human proteins hg38 assembly version from all available components (chromosomes) except unplaced from UniProt:    
 https://www.uniprot.org/proteomes/UP000005640
 
-Then we filtered out proteins as it was noted in the original article:
+Then we filtered out proteins as it was noted in the original article:   
 https://colab.research.google.com/drive/1vkKK-bDu3C5pw5PmG8G5N_xI4JGd6PAL?usp=sharing 
 
-Details about filtered categories, regular expressions and so on could be found at Google Sheets:
+Details about filtered categories, regular expressions and so on could be found at Google Sheets:    
 https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-VMI/edit#gid=791643136 
 
 ## RECIPROCAL BEST HIT BLAT
 
 For Mammuthus columbi genome we did Reciprocal Best Hit BLAT versus filtered human proteins from hg38 assembly version.
+
+Installing BLAT software to working environment:
+
+	conda install -c bioconda blat
+
+At first we did two BLAT analysis: (1) mammoth’s protein sequences versus human protein sequences and (2) human protein sequences versus mammoth’s protein sequences.
+
+	blat -t=prot -q=prot -out=blast8 data/genomes/annotations/mamColU_proteins.fasta data/filtered_human_proteins_hg38.fasta data/blat/mammoth/blat_mamcol_hg38.psl
+	blat -t=prot -q=prot -out=blast8 data/filtered_human_proteins_hg38.fasta data/genomes/annotations/mamColU_proteins.fasta data/blat/mammoth/blat_hg38_mamcol.psl
+
+At second we sorted and filtered BLAT results with following commands:
+
+	sort -k2,2 -k3,3nr data/blat/mammoth/blat_mamcol_hg38.psl > data/blat/mammoth/blat_mamcol_hg38_sorted.psl
+	sort -k2,2 -k3,3nr data/blat/mammoth/blat_hg38_mamcol.psl > data/blat/mammoth/blat_hg38_mamcol_sorted.psl
+	
+	awk 'BEGIN { OFS="\t"; prev2="" } {         
+	    if ($2 != prev2) {
+	        print $0; prev2=$2
+	    } else if ($3 > prev3 && $(NF-1) < prev11) {
+	        print $0; prev3=$3; prev11=$(NF-1)
+	    }
+	}' data/blat/mammoth/blat_mamcol_hg38_sorted.psl > data/blat/mammoth/blat_mamcol_hg38_filtered.psl
+	
+	awk 'BEGIN { OFS="\t"; prev2="" } {         
+	    if ($2 != prev2) {
+	        print $0; prev2=$2
+	    } else if ($3 > prev3 && $(NF-1) < prev11) {
+	        print $0; prev3=$3; prev11=$(NF-1)
+	    }
+	}' data/blat/mammoth/blat_hg38_mamcol_sorted.psl > data/blat/mammoth/blat_hg38_mamcol_filtered.psl
+
+At third we tried to found reciprocal best hits with python notebook **notebooks/RBH_mammoth.ipynb**.
+
+
 ## CORRELATE THE DUPLICATION RATES WITH THE GENOME QUALITY STATISTICS
 We used the BUSCO software to calculate quality statistics. We have calculated all available genomes. As we were lack of computational power, we decided to calculate quality metrics on functional proteins, they can be found in data folder of this repo. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats. As it can be seen, we also used mammalia lineage stored on PC, which is indicated by `-l` and `--offline` flags. We used local lineage because it was impossible to connect to the BUSCO's server from Russia.
 ```
@@ -120,3 +154,4 @@ Busco results can be found in the table below. Total number of BUSCO orthologs i
 
 
 ![alt text](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/busco.jpg)
+
