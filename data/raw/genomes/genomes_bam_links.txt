@@ -1,0 +1,10 @@
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260500/F-SL0001__aka_Lcy-SL0001__R1_dedup_2_ReadGroups.bam
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260500/F-SL0001__aka_Lcy-SL0001__R1_dedup_2_ReadGroups.bam.bai
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260503/I-IK_99_237_merged_ReadGroups.bam
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260503/I-IK_99_237_merged_ReadGroups.bam.bai
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260506/U-Rawlins_ReadGroups.bam
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260506/U-Rawlins_ReadGroups.bam.bai
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260507/V-UW20579_ReadGroups.bam
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260507/V-UW20579_ReadGroups.bam.bai
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260504/N-NEPECV_merged.rmdupse.RG.bam
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR226/ERR2260504/N-NEPECV_merged.rmdupse.RG.bam.bai

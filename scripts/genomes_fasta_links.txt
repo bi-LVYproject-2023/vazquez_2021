@@ -1,0 +1,6 @@
+https://dnazoo.s3.wasabisys.com/Choloepus_hoffmanni/C_hoffmanni-2.0.1_HiC.fasta.gz
+https://dnazoo.s3.wasabisys.com/Elephas_maximus/Elephas_maximus_HiC.fasta.gz
+https://dnazoo.s3.wasabisys.com/Orycteropus_afer/OryAfe1.0_HiC.fasta.gz
+https://dnazoo.s3.wasabisys.com/Procavia_capensis__Pcap_2.0/Pcap_2.0_HiC.fasta.gz
+https://dnazoo.s3.wasabisys.com/Trichechus_manatus/TriManLat1.0_HiC.fasta.gz
+ftp://ftp.broadinstitute.org:21/pub/assemblies/mammals/elephant/loxAfr4/Chromosomes.v2.fasta.gz
