@@ -5,7 +5,7 @@ Vazquez, J. M., & Lynch, V. J. (2021). Pervasive duplication of tumor suppressor
 
 ## Students 
 
-1. Igamberdiev Lev, 2nd year of Bachelor degree, [MIPT](https://mipt.ru/ "Moscow institute of physics and technologies").
+1. Igamberdiev Lev, [MIPT](https://mipt.ru/ "Moscow institute of physics and technologies").
 
 2. Valeria Lobanova.
 3. Anastasiia Bukreeva
