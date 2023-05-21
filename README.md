@@ -1,4 +1,4 @@
-# Bioinformatics Institue spring project.
+# Bioinformatics institute spring project.
 
 In this repository we are reproducing an article, which can be found by this [link](https://elifesciences.org/articles/65041 "The reproduced article").      
 Vazquez, J. M., & Lynch, V. J. (2021). Pervasive duplication of tumor suppressors in Afrotherians during the evolution of large bodies and reduced cancer risk. Elife, 10, e65041.
