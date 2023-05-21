@@ -6,7 +6,6 @@ Vazquez, J. M., & Lynch, V. J. (2021). Pervasive duplication of tumor suppressor
 ## Students 
 
 1. Igamberdiev Lev, [MIPT](https://mipt.ru/ "Moscow institute of physics and technologies").
-
 2. Valeria Lobanova.
 3. Anastasiia Bukreeva
 
@@ -14,6 +13,20 @@ Vazquez, J. M., & Lynch, V. J. (2021). Pervasive duplication of tumor suppressor
 
 1. Yuriy Malovichko, LOEWE Centre for Translational Biodiversity Genomics, Germany.
 
+# Introduction
+
+# Aim and tasks
+## Aim
+Asses the impact of gene duplication pattern and body size on cancer development risk in Afrotheria.
+## Tasks
+1. Reconstruct the mammalian phylogeny (Lev)
+2. Infer the body size evolution rates (Lev & Anastasiia)
+3. Establish the orthology between all genes in the selected species via RBHB (Anastasiia & Valeria)
+4. Assess potential duplications within the Afrotheria clade (not done)
+5. Infer the ancestral copy numbers for the potential duplicates (not done)
+6. Prove the potential duplicates' expression with the transcriptomic data (Anastasiia)
+7. Correlate the duplication rates with the genome quality statistics ([BUSCO](https://busco.ezlab.org/)) (Lev)
+8. Explore the functional enrichment of the potential duplicates (Anastasiia)
 
 # WORKING PIPELINE
 
@@ -67,6 +80,7 @@ CDS count: 69431
 
 	cat data/genomes/annotations/mamColU.gff | grep "CDS" | wc -l
 
+## RECONSTRUCT THE MAMMALIAN PHYLOGENY
 
 ## FILTERING HUMAN PROTEINS FOR RBH BLAT
 
@@ -82,3 +96,8 @@ https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-
 ## RECIPROCAL BEST HIT BLAT
 
 For Mammuthus columbi genome we did Reciprocal Best Hit BLAT versus filtered human proteins from hg38 assembly version.
+## CORRELATE THE DUPLICATION RATES WITH THE GENOME QUALITY STATISTICS
+We used the BUSCO software to calculate quality statistics. As we were lack of computational power, we decided to calculate quality metrics on functional proteins. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats.
+```
+
+```
