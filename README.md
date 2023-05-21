@@ -101,3 +101,4 @@ We used the BUSCO software to calculate quality statistics. As we were lack of c
 ```
 
 ```
+![alt text](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/busco.jpg)
