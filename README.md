@@ -36,8 +36,8 @@ List of genomes, resources for downloading and commentaries:
 https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-VMI/edit#gid=0  
 
 **15** full genomes of Afrotheria were needed.    
-**10** genomes were allowed for downloading.    
-**5** genomes were introduced only as bam files.     
+**10** genomes were available for downloading at DNAZoo or NCBI.    
+**5** genomes of extinct proboscideans were introduced only as BAM files.     
 
 This genomes should be downloaded manually (in FASTA format):    
 https://www.ncbi.nlm.nih.gov/data-hub/genome/GCF_000296735.1/     
@@ -62,7 +62,7 @@ For deriving summary stats table about reconstructed genomes see **~/notebooks/g
 | 3 | mamAmeI | 2153             | 3266707888    | 31.401881  | 755946427  | 23.140925         |
 | 4 | palAntN | 2274             | 3269440243    | 32.847895  | 596278337  | 18.237933         |
 
-We annotated one of the reconstructed ancient genomes, the genome of Mammuthus columbi, with Augustus:
+We annotated one of the reconstructed ancient genomes (*Mammuthus columbi*), the genome of Mammuthus columbi, with Augustus:
 
 	augustus --strand=both --singlestrand=true --alternatives-from-evidence=true --gff3=on --uniqueGeneId=True --genemodel=complete --species=human data/genomes/mamColU.fasta > data/genomes/annotations/mamColU.gff
 
@@ -90,7 +90,7 @@ To reconstruct the mammalian phylogeny we used trees from other articles. One tr
 We downloaded human proteins hg38 assembly version from all available components (chromosomes) except unplaced from UniProt:    
 https://www.uniprot.org/proteomes/UP000005640
 
-Then we filtered out proteins as it was noted in the original article:   
+Then we filtered out proteins as suggested in the original article:   
 https://colab.research.google.com/drive/1vkKK-bDu3C5pw5PmG8G5N_xI4JGd6PAL?usp=sharing 
 
 Details about filtered categories, regular expressions and so on could be found at Google Sheets:    
@@ -98,18 +98,18 @@ https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-
 
 ## RECIPROCAL BEST HIT BLAT
 
-For Mammuthus columbi genome we did Reciprocal Best Hit BLAT versus filtered human proteins from hg38 assembly version.
+For *Mammuthus columbi*, we performed the Reciprocal Best Hit BLAT procedure versus filtered human proteins from hg38 assembly version.
 
 Installing BLAT software to working environment:
 
 	conda install -c bioconda blat
 
-At first we did two BLAT analysis: (1) mammoth’s protein sequences versus human protein sequences and (2) human protein sequences versus mammoth’s protein sequences.
+First, we did two BLAT analysis: (1) mammoth’s protein sequences versus human protein sequences and (2) human protein sequences versus the mammoth’s protein sequences.
 
 	blat -t=prot -q=prot -out=blast8 data/genomes/annotations/mamColU_proteins.fasta data/filtered_human_proteins_hg38.fasta data/blat/mammoth/blat_mamcol_hg38.psl
 	blat -t=prot -q=prot -out=blast8 data/filtered_human_proteins_hg38.fasta data/genomes/annotations/mamColU_proteins.fasta data/blat/mammoth/blat_hg38_mamcol.psl
 
-At second we sorted and filtered BLAT results with following commands:
+Second, we sorted and filtered BLAT results with following commands:
 
 	sort -k2,2 -k3,3nr data/blat/mammoth/blat_mamcol_hg38.psl > data/blat/mammoth/blat_mamcol_hg38_sorted.psl
 	sort -k2,2 -k3,3nr data/blat/mammoth/blat_hg38_mamcol.psl > data/blat/mammoth/blat_hg38_mamcol_sorted.psl
@@ -130,11 +130,11 @@ At second we sorted and filtered BLAT results with following commands:
 	    }
 	}' data/blat/mammoth/blat_hg38_mamcol_sorted.psl > data/blat/mammoth/blat_hg38_mamcol_filtered.psl
 
-At third we tried to found reciprocal best hits with python notebook **notebooks/RBH_mammoth.ipynb**.
+Third, we tried to found reciprocal best hits with python notebook **notebooks/RBH_mammoth.ipynb**.
 
 
 ## CORRELATE THE DUPLICATION RATES WITH THE GENOME QUALITY STATISTICS
-We used the BUSCO software to calculate quality statistics. We have calculated all available genomes. As we were lack of computational power, we decided to calculate quality metrics on functional proteins, they can be found in data folder of this repo. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats. As it can be seen, we also used mammalia lineage stored on PC, which is indicated by `-l` and `--offline` flags. We used local lineage because it was impossible to connect to the BUSCO's server from Russia.
+We used the BUSCO software to calculate quality statistics. Quality was assessed for all the available genomes. As we lacked computational power, we decided to calculate quality metrics with functional proteins as input, they can be found in data folder of this repo. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats. As it can be seen, we also used Mammalia lineage file stored locally, which is indicated by `-l` and `--offline` flags. We used local lineage because it was impossible to connect to the BUSCO's directly at the moment.
 ```
 busco -i protein.faa -l busco_downloads/lineages/mammalia_odb10/ -o speciesres/ -m protein --offline -c
 ```
