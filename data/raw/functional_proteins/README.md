@@ -1,1 +1,1 @@
-
+This directory contains fasta files with functional proteins, which were used in BUSCO genome quality assessment. All these files can be also found on links mentioned in step with genome downloading. 
