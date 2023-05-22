@@ -155,6 +155,8 @@ Busco results can be found in the table below. Total number of BUSCO orthologs i
 
 
 
-
+This figure shows box plots with single copy orthologs by BUSCO for each genome and duplicated orthologs by BUSCO for each genome. As it can be seen, only two genomes have more, than 1500 duplicated orthologs. 
 ![Complete orthologs by BUSCO for each genome](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/busco.jpg)
+
+This figure illustrates, that there is no relationship between the number of duplicated orthologs and degree of genome fragmentation.
 ![Relationship between fragmentation of genome and number of duplicated orthologs](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/scatter_plot.jpg)
