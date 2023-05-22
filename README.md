@@ -81,6 +81,8 @@ CDS count: 69431
 	cat data/genomes/annotations/mamColU.gff | grep "CDS" | wc -l
 
 ## RECONSTRUCT THE MAMMALIAN PHYLOGENY
+To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as replace_afrotheria.R. All dependencies for script are mentioned in the beginning of it. 
+![_Afrotherian_ clade in mammalian tree](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/figures/mammaliantree.jpg)
 
 ## FILTERING HUMAN PROTEINS FOR RBH BLAT
 
@@ -153,5 +155,5 @@ Busco results can be found in the table below. Total number of BUSCO orthologs i
 
 
 
-![alt text](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/busco.jpg)
-
+![Complete orthologs by BUSCO for each genome](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/busco.jpg)
+![Relationship between fragmentation of genome and number of duplicated orthologs](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/scatter_plot.jpg)
