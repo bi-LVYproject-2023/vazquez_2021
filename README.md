@@ -81,7 +81,7 @@ CDS count: 69431
 	cat data/genomes/annotations/mamColU.gff | grep "CDS" | wc -l
 
 ## RECONSTRUCT THE MAMMALIAN PHYLOGENY
-To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as replace_afrotheria.R. All dependencies for script are mentioned in the beginning of it. 
+To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as replace_afrotheria.R. All dependencies for script are mentioned in the beginning of it. The resulting supertree is shown below with highlighted _Afrotherian_ clade.
 ![_Afrotherian_ clade in mammalian tree](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/mammaliantree.jpg)
 
 ## FILTERING HUMAN PROTEINS FOR RBH BLAT
