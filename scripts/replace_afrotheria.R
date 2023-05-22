@@ -1,11 +1,14 @@
 library(ape)
 library(dplyr)
 
+## Path to mammalian tree, insert yours path to file
+MPATH <- ''
+## Path to afrotherian tree, insert yours path to file
+APATH <- ''
 ## upload the Bininda-Emmonds tree
 bininda <- treeio::read.nexus(
   file.path(
-    'Downloads',
-    '41586_2007_BFnature05634_MOESM362_ESM.txt'
+    MPATH
   )
 )
 
@@ -16,8 +19,7 @@ bininda$mammalST_bestDates$tip.label
 ## upload the Puttick's tree
 puttick <- phytools::read.newick(
   file.path(
-    'Downloads',
-    'Afrotherians.con.tre'
+    APATH
   )
 )
 puttick$root.edge <- 0
@@ -76,18 +78,7 @@ test_upload <- phytools::read.newick(
   'bininda+puttick.newick'
 ) ## tooo slow
 
-stabletraits <- read.delim(
-  file.path(
-    'atlantogenataGeneDuplication',
-    'stabletraits_weights.tsv'
-  ),
-  header=FALSE,
-  sep='\t'
-)
 
-stable_spec <- stabletraits$V1[stabletraits$V1 %in% pasted$tip.label]
-
-parent <- phytools::getDescendants(
   pasted,
   which(pasted$tip.label == "Loxodonta_africana")
 )
