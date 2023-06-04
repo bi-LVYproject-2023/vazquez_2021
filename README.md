@@ -28,9 +28,16 @@ Asses the impact of gene duplication pattern and body size on cancer development
 7. Correlate the duplication rates with the genome quality statistics ([BUSCO](https://busco.ezlab.org/)) (Lev)
 8. Explore the functional enrichment of the potential duplicates (Anastasiia)
 
-# WORKING PIPELINE
+# Working pipeline
 
-## DOWNLOAD GENOMES
+## Reconstruct the mammalian phylogeny
+To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as replace_afrotheria.R. All dependencies for script are mentioned in the beginning of it. The resulting supertree is shown below with highlighted _Afrotherian_ clade.
+
+![_Afrotherian_ clade in mammalian tree](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/mammaliantree.jpg)
+
+## Establish the orthology between all genes in the selected species via RBHB
+
+### Download genomes
 
 List of genomes, resources for downloading and commentaries:    
 https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-VMI/edit#gid=0  
@@ -64,28 +71,17 @@ For deriving summary stats table about reconstructed genomes see **~/notebooks/g
 
 We annotated one of the reconstructed ancient genomes (*Mammuthus columbi*), the genome of Mammuthus columbi, with Augustus:
 
-	augustus --strand=both --singlestrand=true --alternatives-from-evidence=true --gff3=on --uniqueGeneId=True --genemodel=complete --species=human data/genomes/mamColU.fasta > data/genomes/annotations/mamColU.gff
+	scripts/annotation.sh
 
 Some stats were obtaining using next commands:
 
 Chromosome count: 171
-
-	cat data/genomes/annotations/mamColU.gff | awk '$1 ~ /^chr/ {print $1}' | uniq | wc -l
-
+	
 Proteins sequences count: 11552
-
-	cat data/genomes/annotations/mamColU.gff | grep "protein sequence" | wc -l
 
 CDS count: 69431
 
-	cat data/genomes/annotations/mamColU.gff | grep "CDS" | wc -l
-
-## RECONSTRUCT THE MAMMALIAN PHYLOGENY
-To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as replace_afrotheria.R. All dependencies for script are mentioned in the beginning of it. The resulting supertree is shown below with highlighted _Afrotherian_ clade.
-
-![_Afrotherian_ clade in mammalian tree](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/mammaliantree.jpg)
-
-## FILTERING HUMAN PROTEINS FOR RBH BLAT
+### Filtering human proteins for RBH BLAT
 
 We downloaded human proteins hg38 assembly version from all available components (chromosomes) except unplaced from UniProt:    
 https://www.uniprot.org/proteomes/UP000005640
@@ -96,7 +92,7 @@ https://colab.research.google.com/drive/1vkKK-bDu3C5pw5PmG8G5N_xI4JGd6PAL?usp=sh
 Details about filtered categories, regular expressions and so on could be found at Google Sheets:    
 https://docs.google.com/spreadsheets/d/126XjvKZmN4m7YIQQ7hjx4LKbH4Wdca3y9o761Nd-VMI/edit#gid=791643136 
 
-## RECIPROCAL BEST HIT BLAT
+### Reciprocal best hit BLAT
 
 For *Mammuthus columbi*, we performed the Reciprocal Best Hit BLAT procedure versus filtered human proteins from hg38 assembly version.
 
@@ -104,36 +100,15 @@ Installing BLAT software to working environment:
 
 	conda install -c bioconda blat
 
-First, we did two BLAT analysis: (1) mammoth’s protein sequences versus human protein sequences and (2) human protein sequences versus the mammoth’s protein sequences.
+First, we did two BLAT analysis: (1) mammoth’s protein sequences versus human protein sequences and (2) human protein sequences versus the mammoth’s protein sequences. Second, we sorted and filtered BLAT results. These steps were done with the following script:
 
-	blat -t=prot -q=prot -out=blast8 data/genomes/annotations/mamColU_proteins.fasta data/filtered_human_proteins_hg38.fasta data/blat/mammoth/blat_mamcol_hg38.psl
-	blat -t=prot -q=prot -out=blast8 data/filtered_human_proteins_hg38.fasta data/genomes/annotations/mamColU_proteins.fasta data/blat/mammoth/blat_hg38_mamcol.psl
-
-Second, we sorted and filtered BLAT results with following commands:
-
-	sort -k2,2 -k3,3nr data/blat/mammoth/blat_mamcol_hg38.psl > data/blat/mammoth/blat_mamcol_hg38_sorted.psl
-	sort -k2,2 -k3,3nr data/blat/mammoth/blat_hg38_mamcol.psl > data/blat/mammoth/blat_hg38_mamcol_sorted.psl
-	
-	awk 'BEGIN { OFS="\t"; prev2="" } {         
-	    if ($2 != prev2) {
-	        print $0; prev2=$2
-	    } else if ($3 > prev3 && $(NF-1) < prev11) {
-	        print $0; prev3=$3; prev11=$(NF-1)
-	    }
-	}' data/blat/mammoth/blat_mamcol_hg38_sorted.psl > data/blat/mammoth/blat_mamcol_hg38_filtered.psl
-	
-	awk 'BEGIN { OFS="\t"; prev2="" } {         
-	    if ($2 != prev2) {
-	        print $0; prev2=$2
-	    } else if ($3 > prev3 && $(NF-1) < prev11) {
-	        print $0; prev3=$3; prev11=$(NF-1)
-	    }
-	}' data/blat/mammoth/blat_hg38_mamcol_sorted.psl > data/blat/mammoth/blat_hg38_mamcol_filtered.psl
+	scripts/rbhb.sh
 
 Third, we tried to found reciprocal best hits with python notebook **notebooks/RBH_mammoth.ipynb**.
 
 
-## CORRELATE THE DUPLICATION RATES WITH THE GENOME QUALITY STATISTICS
+## Correlate the duplication rates with the genome quality statistics 
+
 We used the BUSCO software to calculate quality statistics. Quality was assessed for all the available genomes. As we lacked computational power, we decided to calculate quality metrics with functional proteins as input, they can be found in data folder of this repo. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats. As it can be seen, we also used Mammalia lineage file stored locally, which is indicated by `-l` and `--offline` flags. We used local lineage because it was impossible to connect to the BUSCO's directly at the moment.
 ```
 busco -i protein.faa -l busco_downloads/lineages/mammalia_odb10/ -o speciesres/ -m protein --offline -c
