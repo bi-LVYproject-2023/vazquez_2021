@@ -81,6 +81,23 @@ Proteins sequences count: 11552
 
 CDS count: 69431
 
+### Prove the potential duplicates' expression with the transcriptomic data
+
+List of animals for transcriptome analysis: *Dasypus novemcinctus*, *Loxodonta africana*, *Trichechus manatus*.
+For alignment to match sequencing reads we used the HISAT2 programme. We assembled the RNA-seq alignments to potential transcripts using StringTie.
+
+Installing HISAT2 and StringTie software to working environment:
+
+	`conda install -c bioconda hisat2`
+	`conda install -c bioconda stringtie`
+
+All steps were done with the following scripts:
+	
+	`scripts/transcriptome/D.novemcinctus.sh`
+	`scripts/transcriptome/L.africana.sh`
+	`scripts/transcriptome/T.latirostris.sh`
+
+
 ### Filtering human proteins for RBH BLAT
 
 We downloaded human proteins hg38 assembly version from all available components (chromosomes) except unplaced from UniProt:    
@@ -135,3 +152,5 @@ This figure shows box plots with single copy orthologs by BUSCO for each genome 
 
 This figure illustrates that there is no relationship between the number of duplicated orthologs and degree of genome fragmentation.
 ![Relationship between fragmentation of genome and number of duplicated orthologs](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/scatter_plot.jpg)
+### Explore the functional enrichment of the potential duplicate
+Unfortunately, there was no completion of this step in time.
