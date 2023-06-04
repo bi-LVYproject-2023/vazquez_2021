@@ -88,14 +88,14 @@ For alignment to match sequencing reads we used the HISAT2 programme. We assembl
 
 Installing HISAT2 and StringTie software to working environment:
 
-	`conda install -c bioconda hisat2`
-	`conda install -c bioconda stringtie`
+	conda install -c bioconda hisat2
+	conda install -c bioconda stringtie
 
 All steps were done with the following scripts:
 	
-	`scripts/transcriptome/D.novemcinctus.sh`
-	`scripts/transcriptome/L.africana.sh`
-	`scripts/transcriptome/T.latirostris.sh`
+	scripts/transcriptome/D.novemcinctus.sh
+	scripts/transcriptome/L.africana.sh
+	scripts/transcriptome/T.latirostris.sh
 
 
 ### Filtering human proteins for RBH BLAT
