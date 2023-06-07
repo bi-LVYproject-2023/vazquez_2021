@@ -36,7 +36,7 @@ To reconstruct the mammalian phylogeny we used trees from other articles. One tr
 ![_Afrotherian_ clade in mammalian tree](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/mammaliantree.jpg)
 
 ## Infer the body size evolution rates (not done)
-We were trying to reconstruct ancestral states by `stabletraits`, but we have faced several problems with starting it from command line. After this we had tried to use R packages to solve out problem, but it had not help us. As the result, we got body size table for extant species, but we were not able to infer the body size evolution rates.
+We were trying to reconstruct ancestral states by `stabletraits`, but we have faced several problems with starting it from command line. After this we had tried to use R packages to solve our problem, but it had not help us. As the result, we got body size table for extant species, but we were not able to infer the body size evolution rates.
 
 ## Establish the orthology between all genes in the selected species via RBHB
  
