@@ -30,13 +30,16 @@ Asses the impact of gene duplication pattern and body size on cancer development
 
 # Working pipeline
 
-## Reconstruct the mammalian phylogeny
-To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as replace_afrotheria.R. All dependencies for script are mentioned in the beginning of it. The resulting supertree is shown below with highlighted _Afrotherian_ clade.
+## Reconstruct the mammalian phylogeny (done)
+To reconstruct the mammalian phylogeny we used trees from other articles. One tree contained extant and extinct species of _Afrotherians_, the other contained placental mammalians phylogeny. We have replaced afrotherian clade in mammalian phylogeny and got a supertree. Scrpit can be found in scripts folder as `replace_afrotheria.R`. All dependencies for script are mentioned in the beginning of it. The resulting supertree is shown below with highlighted _Afrotherian_ clade.
 
 ![_Afrotherian_ clade in mammalian tree](https://github.com/bi-LVYproject-2023/vazquez_2021/blob/main/figures/mammaliantree.jpg)
 
-## Establish the orthology between all genes in the selected species via RBHB
+## Infer the body size evolution rates (not done)
+We were trying to reconstruct ancestral states by `stabletraits`, but we have faced several problems with starting it from command line. After this we had tried to use R packages to solve out problem, but it had not help us. As the result, we got body size table for extant species, but we were not able to infer the body size evolution rates.
 
+## Establish the orthology between all genes in the selected species via RBHB
+ 
 ### Download genomes
 
 List of genomes, resources for downloading and commentaries:    
@@ -124,7 +127,7 @@ First, we did two BLAT analysis: (1) mammoth’s protein sequences versus human 
 Third, we tried to found reciprocal best hits with python notebook **notebooks/RBH_mammoth.ipynb**.
 
 
-## Correlate the duplication rates with the genome quality statistics 
+## Correlate the duplication rates with the genome quality statistics (done)
 
 We used the BUSCO software to calculate quality statistics. Quality was assessed for all the available genomes. As we lacked computational power, we decided to calculate quality metrics with functional proteins as input, they can be found in data folder of this repo. This procedure did not significantly changed the statistics, but accelerated the process of calculation and decreased amount of RAM in use from 15.9 GB to 4.9 GB approximately per genome. We used command below to get stats. As it can be seen, we also used Mammalia lineage file stored locally, which is indicated by `-l` and `--offline` flags. We used local lineage because it was impossible to connect to the BUSCO's directly at the moment.
 ```
